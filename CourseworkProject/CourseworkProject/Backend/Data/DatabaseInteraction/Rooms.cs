@@ -37,6 +37,10 @@ WHERE (((Rooms.RoomID)="+RID+@"));
                     {
                         Room.Members.Add(Member.GetMember.FromIDRoomMember(MID));
                     }
+                    foreach (int CID in Channel.GetChannelIdsInRoom(RID))
+                    {
+                        Room.Channels.Add(Channel.GetChannel.FromIDRoomChannel(CID));
+                    }
                     return Room;
                 }
                 return null;

@@ -10,9 +10,9 @@ namespace CourseworkProject
     {
         static void Main(string[] args)
         {
-            //    Backend.Data.DatabaseEmulation.NewUser NewUser = new Backend.Data.DatabaseEmulation.NewUser();
-            //    NewUser.UserName = "Jaminima";NewUser.Nickname = "Jcc";NewUser.HashedPassword = "Pwrd";
-            //    Backend.Data.DatabaseInteraction.UserData.SaveNewUser(NewUser);
+            //Backend.Data.DatabaseEmulation.NewUser NewUser = new Backend.Data.DatabaseEmulation.NewUser();
+            //NewUser.UserName = "Jaminimaa"; NewUser.Nickname = "Jcc"; NewUser.HashedPassword = "Pwrd";
+            //Backend.Data.DatabaseInteraction.UserData.SaveNewUser(NewUser);
 
             //Backend.Data.DatabaseEmulation.NewRoom NewRoom = new Backend.Data.DatabaseEmulation.NewRoom();
             //NewRoom.RoomName = "MyRoom"; NewRoom.Owner = Backend.Data.DatabaseInteraction.UserData.GetUser.FromUsername("Jaminima");
@@ -24,9 +24,11 @@ namespace CourseworkProject
             //NewMember.IsMod = false;
             //Backend.Data.DatabaseInteraction.Member.InsertMember(NewMember);
 
-            Backend.Data.DatabaseEmulation.Member Member = Backend.Data.DatabaseInteraction.Member.GetMember.FromID(2);
-            Member.IsMod = true;
-            Backend.Data.DatabaseInteraction.Member.UpdateMember(Member);
+            Backend.Data.DatabaseEmulation.Room Room= Backend.Data.DatabaseInteraction.Rooms.GetRoom.FromID(2);
+
+            //Backend.Data.DatabaseEmulation.Member Member = Backend.Data.DatabaseInteraction.Member.GetMember.FromID(2);
+            //Member.IsMod = true;
+            //Backend.Data.DatabaseInteraction.Member.UpdateMember(Member);
 
         }
     }

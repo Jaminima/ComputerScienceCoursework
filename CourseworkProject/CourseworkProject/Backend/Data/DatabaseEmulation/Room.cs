@@ -20,6 +20,7 @@ namespace CourseworkProject.Backend.Data.DatabaseEmulation
         public string RoomName;
         public string ImageURL;
         public List<Member> Members = new List<Member> { };
+        public List<Channel> Channels = new List<Channel> { };
 
         public Room(int InTableChannelId)
         {

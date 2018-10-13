@@ -45,12 +45,15 @@ WHERE (((UserData.UserName)='"+Username+@"'));
 
         public static void SaveNewUser(DatabaseEmulation.NewUser NewUser)
         {
-            Init.SQLInstance.Execute(@"INSERT INTO UserData ( UserName, HashedPassword, Nickname,ImageURl ) Values ('"+NewUser.UserName+@"','"+NewUser.HashedPassword+@"','"+NewUser.Nickname+@"','"+NewUser.ImageUrl+@"');");
+            if (!UsernameInUse(NewUser.UserName))
+            {
+                Init.SQLInstance.Execute(@"INSERT INTO UserData ( UserName, HashedPassword, Nickname,ImageURl ) Values ('" + NewUser.UserName + @"','" + NewUser.HashedPassword + @"','" + NewUser.Nickname + @"','" + NewUser.ImageUrl + @"');");
+            }
         }
 
         public static void UpdateUser(DatabaseEmulation.User User)
         {
-            if (UserExists(User.UserID))
+            if (UserExists(User.UserID)&&!UsernameInUse(User.UserID,User.UserName))
             {
                 Init.SQLInstance.Execute(@"UPDATE UserData SET UserData.UserName = '"+User.UserName+@"', UserData.HashedPassword = '"+User.HashedPassword+@"', UserData.Nickname = '"+User.Nickname+ @"', UserData.ImageURl='"+User.ImageUrl+@"'
 WHERE(((UserData.UserID) = " + User.UserID+@"));
@@ -62,6 +65,22 @@ WHERE(((UserData.UserID) = " + User.UserID+@"));
         {
             if (GetAllUserIds().Contains(UID)) { return true; }
             return false;
+        }
+        public static bool UsernameInUse(string Username)
+        {
+            List<String[]> StrUsernames = Init.SQLInstance.ExecuteReader(@"SELECT UserData.UserID
+FROM UserData
+WHERE (((UserData.UserName)='"+Username+@"'));
+");
+            return StrUsernames.Count != 0;
+        }
+        public static bool UsernameInUse(int UID,string Username)
+        {
+            List<String[]> StrUsers = Init.SQLInstance.ExecuteReader(@"SELECT UserData.UserName, UserData.UserID
+FROM UserData
+WHERE (((UserData.UserName)='"+Username+@"') AND ((UserData.UserID)<>"+UID+@"));
+");
+            return StrUsers.Count != 0;
         }
 
         public static int[] GetAllUserIds()
