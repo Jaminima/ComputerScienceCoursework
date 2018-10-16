@@ -50,6 +50,7 @@
     <Compile Include="Backend\Data\DatabaseEmulation\UserData.cs" />
     <Compile Include="Backend\Data\DatabaseInteraction\Channel.cs" />
     <Compile Include="Backend\Data\DatabaseInteraction\Member.cs" />
+    <Compile Include="Backend\Data\DatabaseInteraction\Message.cs" />
     <Compile Include="Backend\Data\DatabaseInteraction\Rooms.cs" />
     <Compile Include="Backend\Data\DatabaseInteraction\SQL.cs" />
     <Compile Include="Backend\Data\DatabaseInteraction\UserData.cs" />

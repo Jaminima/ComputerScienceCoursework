@@ -47,6 +47,14 @@ WHERE (((Rooms.RoomID)="+RID+@"));
             }
         }
 
+        public static void DeleteRoom(DatabaseEmulation.Room Room)
+        {
+            Init.SQLInstance.Execute(@"DELETE Rooms.RoomID
+FROM Rooms
+WHERE (((Rooms.RoomID)="+Room.RoomID+@"));
+");
+        }
+
         public static void InsertRoom(DatabaseEmulation.NewRoom NewRoom)
         {
             Init.SQLInstance.Execute(@"INSERT INTO Rooms (OwnerID, RoomName, ImageURL) VALUES ("+NewRoom.Owner.UserID+@",'"+NewRoom.RoomName+@"','"+NewRoom.ImageURL+@"');");

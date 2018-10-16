@@ -12,6 +12,7 @@ namespace CourseworkProject.Backend.Data.DatabaseEmulation
         public User User;
         public string Body;
         public string ImageURL;
+        public DateTime SendDateTime;
     }
 
     public class Message
@@ -21,6 +22,7 @@ namespace CourseworkProject.Backend.Data.DatabaseEmulation
         public User User;
         public string Body;
         public string ImageURL;
+        public DateTime SendDateTime;
 
         public Message(int MID)
         {

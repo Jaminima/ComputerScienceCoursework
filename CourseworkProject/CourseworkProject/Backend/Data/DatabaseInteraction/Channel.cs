@@ -24,7 +24,7 @@ WHERE (((Channels.ChannelID)="+CID+@"));
                     Channel.Channelname = CData[0][2];
                     Channel.ModOnly = CData[0][3] == "True";
                     Channel.ImageURL = CData[0][4];
-                    Channel.PositionInRoom = int.Parse(CData[0][4]);
+                    Channel.PositionInRoom = int.Parse(CData[0][5]);
                     return Channel;
                 }
                 return null;
@@ -48,6 +48,14 @@ WHERE (((Channels.ChannelID)=" + CID + @"));
                 }
                 return null;
             }
+        }
+
+        public static void DeleteChannel(DatabaseEmulation.Channel Channel)
+        {
+            Init.SQLInstance.Execute(@"DELETE Channels.ChannelID
+FROM Channels
+WHERE (((Channels.ChannelID)="+Channel.ChannelId+@"));
+");
         }
 
         public static void InsertChannel(DatabaseEmulation.NewChannel NewChannel)

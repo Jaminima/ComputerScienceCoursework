@@ -43,6 +43,14 @@ WHERE (((UserData.UserName)='"+Username+@"'));
 
         }
 
+        public static void DeleteUser(DatabaseEmulation.User User)
+        {
+            Init.SQLInstance.Execute(@"DELETE UserData.UserID
+FROM UserData
+WHERE (((UserData.UserID)="+User.UserID+@"));
+");
+        }
+
         public static void SaveNewUser(DatabaseEmulation.NewUser NewUser)
         {
             if (!UsernameInUse(NewUser.UserName))

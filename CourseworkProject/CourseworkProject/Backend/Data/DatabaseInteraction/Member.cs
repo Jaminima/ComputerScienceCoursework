@@ -47,6 +47,18 @@ WHERE (((Memberships.MembershipID)=" + MID + @"));
 
         }
 
+        public static void DeleteMember(DatabaseEmulation.Member Member)
+        {
+            if (Member.Room.Owner.UserID != Member.User.UserID)
+            {
+                Init.SQLInstance.Execute(@"DELETE Memberships.MembershipID
+FROM Memberships
+WHERE (((Memberships.MembershipID)=" + Member.MemberID + @"));
+");
+            }
+            else { Rooms.DeleteRoom(Member.Room); }
+        }
+
         public static void InsertMember(DatabaseEmulation.NewMember NewMember)
         {
             Init.SQLInstance.Execute(@"INSERT INTO Memberships (UserID, RoomID, IsModerator) VALUES ("+NewMember.User.UserID+@","+NewMember.Room.RoomID+@","+NewMember.IsMod+@");");
