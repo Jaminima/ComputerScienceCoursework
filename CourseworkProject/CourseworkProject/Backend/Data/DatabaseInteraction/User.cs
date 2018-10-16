@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseworkProject.Backend.Data.DatabaseInteraction
 {
-    public static class UserData
+    public static class User
     {
         public static class GetUser
         {

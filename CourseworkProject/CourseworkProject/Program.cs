@@ -10,6 +10,9 @@ namespace CourseworkProject
     {
         static void Main(string[] args)
         {
+            Backend.Data.DatabaseEmulation.Room Room = Backend.Data.DatabaseInteraction.Rooms.GetRoom.FromID(5);
+
+            Console.ReadLine();
         }
     }
 }

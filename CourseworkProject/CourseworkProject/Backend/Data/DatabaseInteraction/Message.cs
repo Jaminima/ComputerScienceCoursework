@@ -21,7 +21,7 @@ WHERE (((Messages.MessageID)="+MID+@"));
 ");
                     if (MData.Count == 0) { return null; }
                     Message.Channel = Channel.GetChannel.FromID(int.Parse(MData[0][0]));
-                    Message.User = UserData.GetUser.FromID(int.Parse(MData[0][1]));
+                    Message.User = User.GetUser.FromID(int.Parse(MData[0][1]));
                     Message.Body = MData[0][2];
                     Message.ImageURL = MData[0][3];
                     Message.SendDateTime = DateTime.Parse(MData[0][4]);
@@ -42,14 +42,14 @@ ORDER BY Messages.SentDate DESC;
                 for (int i = 0; i < MData.Count && i < MessageCount; i++)
                 {
                     DatabaseEmulation.Message M = new DatabaseEmulation.Message(int.Parse(MData[i][0]));
-                    M.User = UserData.GetUser.FromID(int.Parse(MData[i][1]));
+                    M.User = User.GetUser.FromID(int.Parse(MData[i][1]));
                     M.Channel = Channel;
                     M.Body = MData[i][2];
                     M.ImageURL = MData[i][3];
                     M.SendDateTime = DateTime.Parse(MData[0][4]);
                     Messages.Add(M);
                 }
-                return M;
+                return Messages.ToArray<DatabaseEmulation.Message>();
             }
 
         }

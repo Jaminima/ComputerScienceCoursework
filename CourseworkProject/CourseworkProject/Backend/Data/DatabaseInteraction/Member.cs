@@ -20,7 +20,7 @@ FROM (UserData INNER JOIN Rooms ON UserData.UserID = Rooms.OwnerID) INNER JOIN M
 WHERE (((Memberships.MembershipID)="+MID+@"));
 ");
                     if (MData.Count == 0) { return null; }
-                    Member.User = UserData.GetUser.FromID(int.Parse(MData[0][1]));
+                    Member.User = User.GetUser.FromID(int.Parse(MData[0][1]));
                     Member.Room = Rooms.GetRoom.FromID(int.Parse(MData[0][2]));
                     Member.IsMod = MData[0][3]=="True";
                     return Member;
@@ -38,7 +38,7 @@ FROM (UserData INNER JOIN Rooms ON UserData.UserID = Rooms.OwnerID) INNER JOIN M
 WHERE (((Memberships.MembershipID)=" + MID + @"));
 ");
                     if (MData.Count == 0) { return null; }
-                    Member.User = UserData.GetUser.FromID(int.Parse(MData[0][1]));
+                    Member.User = User.GetUser.FromID(int.Parse(MData[0][1]));
                     Member.IsMod = MData[0][3] == "True";
                     return Member;
                 }

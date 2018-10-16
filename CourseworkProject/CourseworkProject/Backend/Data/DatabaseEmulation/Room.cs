@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace CourseworkProject.Backend.Data.DatabaseEmulation
 {
-    public class NewRoom
+    public class NewRoom : BaseObject
     {
         public User Owner;
         public string RoomName;
         public string ImageURL;
+        public static NewRoom FromJson(Newtonsoft.Json.Linq.JToken Json)
+        {
+            return Json.ToObject<NewRoom>();
+        }
     }
 
-    public class Room
+    public class Room : BaseObject
     {
         public int RoomID;
         public User Owner;
@@ -25,6 +29,10 @@ namespace CourseworkProject.Backend.Data.DatabaseEmulation
         public Room(int InTableChannelId)
         {
             RoomID = InTableChannelId;
+        }
+        public static Room FromJson(Newtonsoft.Json.Linq.JToken Json)
+        {
+            return Json.ToObject<Room>();
         }
     }
 }

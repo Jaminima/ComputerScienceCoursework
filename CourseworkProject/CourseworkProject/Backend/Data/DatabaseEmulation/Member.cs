@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace CourseworkProject.Backend.Data.DatabaseEmulation
 {
-    public class NewMember
+    public class NewMember : BaseObject
     {
         public User User;
         public Room Room;
         public Boolean IsMod;
+        public static NewMember FromJson(Newtonsoft.Json.Linq.JToken Json)
+        {
+            return Json.ToObject<NewMember>();
+        }
     }
 
-    public class Member
+    public class Member : BaseObject
     {
         public User User;
         public Room Room;
@@ -24,6 +28,9 @@ namespace CourseworkProject.Backend.Data.DatabaseEmulation
         {
             MemberID = MID;
         }
-
+        public static Member FromJson(Newtonsoft.Json.Linq.JToken Json)
+        {
+            return Json.ToObject<Member>();
+        }
     }
 }

@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 
 namespace CourseworkProject.Backend.Data.DatabaseEmulation
 {
-    public class NewMessage
+    public class NewMessage : BaseObject
     {
         public Channel Channel;
         public User User;
         public string Body;
         public string ImageURL;
         public DateTime SendDateTime;
+        public static NewMessage FromJson(Newtonsoft.Json.Linq.JToken Json)
+        {
+            return Json.ToObject<NewMessage>();
+        }
     }
 
-    public class Message
+    public class Message : BaseObject
     {
         public int MessageId;
         public Channel Channel;
@@ -28,6 +32,9 @@ namespace CourseworkProject.Backend.Data.DatabaseEmulation
         {
             MessageId = MID;
         }
-
+        public static Message FromJson(Newtonsoft.Json.Linq.JToken Json)
+        {
+            return Json.ToObject<Message>();
+        }
     }
 }

@@ -30,7 +30,7 @@ FROM Rooms
 WHERE (((Rooms.RoomID)="+RID+@"));
 ");
                     if (RData.Count == 0) { return null; }
-                    Room.Owner = UserData.GetUser.FromID(int.Parse(RData[0][1]));
+                    Room.Owner = User.GetUser.FromID(int.Parse(RData[0][1]));
                     Room.RoomName = RData[0][2];
                     Room.ImageURL = RData[0][3];
                     foreach(int MID in Member.GetAllMemberIdsInRoom(RID))

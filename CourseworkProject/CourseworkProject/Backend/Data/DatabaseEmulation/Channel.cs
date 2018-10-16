@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 
 namespace CourseworkProject.Backend.Data.DatabaseEmulation
 {
-    public class NewChannel
+    public class NewChannel : BaseObject
     {
         public Room Room;
         public string Channelname;
         public bool ModOnly;
         public string ImageURL;
         public int PositionInRoom;
+        public static NewChannel FromJson(Newtonsoft.Json.Linq.JToken Json)
+        {
+            return Json.ToObject<NewChannel>();
+        }
     }
 
-    public class Channel
+    public class Channel : BaseObject
     {
         public int ChannelId;
         public Room Room;
@@ -28,6 +32,9 @@ namespace CourseworkProject.Backend.Data.DatabaseEmulation
         {
             ChannelId = CID;
         }
-
+        public static Channel FromJson(Newtonsoft.Json.Linq.JToken Json)
+        {
+            return Json.ToObject<Channel>();
+        }
     }
 }
