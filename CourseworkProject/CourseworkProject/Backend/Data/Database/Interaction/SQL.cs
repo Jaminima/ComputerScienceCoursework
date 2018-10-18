@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.OleDb;
 
-namespace CourseworkProject.Backend.Data.DatabaseInteraction
+namespace CourseworkProject.Backend.Data.Database.Interaction
 {
     public class SQL
     {

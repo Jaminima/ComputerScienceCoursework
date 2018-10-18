@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseworkProject.Backend.Data.DatabaseEmulation
+namespace CourseworkProject.Backend.Data.Database.Emulation
 {
     public class NewKeyExchange : BaseObject
     {
         public User User;
         public string RawPassword;
         public string ExchangeKey;
+        public DateTime DateTime;
         public static NewKeyExchange FromJson(Newtonsoft.Json.Linq.JToken Json)
         {
             return Json.ToObject<NewKeyExchange>();
@@ -23,6 +24,7 @@ namespace CourseworkProject.Backend.Data.DatabaseEmulation
         public User User;
         public string RawPassword;
         public string ExchangeKey;
+        public DateTime DateTime;
 
         public KeyExchange(int EID)
         {

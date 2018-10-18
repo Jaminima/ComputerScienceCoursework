@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseworkProject.Backend.Data.DatabaseInteraction
+namespace CourseworkProject.Backend.Data.Database.Interaction
 {
     public static class Message
     {
         public static class GetMessage
         {
-            public static DatabaseEmulation.Message FromID(int MID)
+            public static Database.Emulation.Message FromID(int MID)
             {
                 if (MessageExists(MID))
                 {
-                    DatabaseEmulation.Message Message = new DatabaseEmulation.Message(MID);
+                    Database.Emulation.Message Message = new Database.Emulation.Message(MID);
                     List<String[]> MData = Init.SQLInstance.ExecuteReader(@"SELECT Messages.ChannelID, Messages.UserID, Messages.Message, Messages.ImageURL, Messages.SentDateTime 
 FROM Messages
 WHERE (((Messages.MessageID)="+MID+@"));
@@ -30,18 +30,18 @@ WHERE (((Messages.MessageID)="+MID+@"));
                 return null;
             }
 
-            public static DatabaseEmulation.Message[] RecentInChannel(DatabaseEmulation.Channel Channel,int MessageCount)
+            public static Database.Emulation.Message[] RecentInChannel(Database.Emulation.Channel Channel,int MessageCount)
             {
                 List<String[]> MData = Init.SQLInstance.ExecuteReader(@"SELECT Messages.MessageID, Messages.UserID, Messages.Message, Messages.ImageURL, Messages.SentDate
 FROM Messages
 WHERE (((Messages.ChannelID)="+Channel.ChannelId+@"))
 ORDER BY Messages.SentDate DESC;
 ");
-                List<DatabaseEmulation.Message> Messages = new List<DatabaseEmulation.Message> { };
+                List<Database.Emulation.Message> Messages = new List<Database.Emulation.Message> { };
                 if (MData.Count == 0) { return null; }
                 for (int i = 0; i < MData.Count && i < MessageCount; i++)
                 {
-                    DatabaseEmulation.Message M = new DatabaseEmulation.Message(int.Parse(MData[i][0]));
+                    Database.Emulation.Message M = new Database.Emulation.Message(int.Parse(MData[i][0]));
                     M.User = User.GetUser.FromID(int.Parse(MData[i][1]));
                     M.Channel = Channel;
                     M.Body = MData[i][2];
@@ -49,7 +49,7 @@ ORDER BY Messages.SentDate DESC;
                     M.SendDateTime = DateTime.Parse(MData[0][4]);
                     Messages.Add(M);
                 }
-                return Messages.ToArray<DatabaseEmulation.Message>();
+                return Messages.ToArray<Database.Emulation.Message>();
             }
 
         }

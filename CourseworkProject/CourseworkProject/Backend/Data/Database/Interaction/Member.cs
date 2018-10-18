@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseworkProject.Backend.Data.DatabaseInteraction
+namespace CourseworkProject.Backend.Data.Database.Interaction
 {
     public static class Member
     {
         public static class GetMember
         {
-            public static DatabaseEmulation.Member FromID(int MID)
+            public static Database.Emulation.Member FromID(int MID)
             {
                 if (MemberExists(MID))
                 {
-                    DatabaseEmulation.Member Member = new DatabaseEmulation.Member(MID);
+                    Database.Emulation.Member Member = new Database.Emulation.Member(MID);
                     List<String[]> MData = Init.SQLInstance.ExecuteReader(@"SELECT Memberships.MembershipID, Memberships.UserID, Memberships.RoomID, Memberships.IsModerator
 FROM (UserData INNER JOIN Rooms ON UserData.UserID = Rooms.OwnerID) INNER JOIN Memberships ON (UserData.UserID = Memberships.UserID) AND (Rooms.RoomID = Memberships.RoomID)
 WHERE (((Memberships.MembershipID)="+MID+@"));
@@ -28,11 +28,11 @@ WHERE (((Memberships.MembershipID)="+MID+@"));
                 return null;
             }
 
-            public static DatabaseEmulation.Member FromIDRoomMember(int MID)
+            public static Database.Emulation.Member FromIDRoomMember(int MID)
             {
                 if (MemberExists(MID))
                 {
-                    DatabaseEmulation.Member Member = new DatabaseEmulation.Member(MID);
+                    Database.Emulation.Member Member = new Database.Emulation.Member(MID);
                     List<String[]> MData = Init.SQLInstance.ExecuteReader(@"SELECT Memberships.MembershipID, Memberships.UserID, Memberships.RoomID, Memberships.IsModerator
 FROM (UserData INNER JOIN Rooms ON UserData.UserID = Rooms.OwnerID) INNER JOIN Memberships ON (UserData.UserID = Memberships.UserID) AND (Rooms.RoomID = Memberships.RoomID)
 WHERE (((Memberships.MembershipID)=" + MID + @"));
@@ -47,7 +47,7 @@ WHERE (((Memberships.MembershipID)=" + MID + @"));
 
         }
 
-        public static void DeleteMember(DatabaseEmulation.Member Member)
+        public static void DeleteMember(Database.Emulation.Member Member)
         {
             if (Member.Room.Owner.UserID != Member.User.UserID)
             {
@@ -59,12 +59,12 @@ WHERE (((Memberships.MembershipID)=" + Member.MemberID + @"));
             else { Rooms.DeleteRoom(Member.Room); }
         }
 
-        public static void InsertMember(DatabaseEmulation.NewMember NewMember)
+        public static void InsertMember(Database.Emulation.NewMember NewMember)
         {
             Init.SQLInstance.Execute(@"INSERT INTO Memberships (UserID, RoomID, IsModerator) VALUES ("+NewMember.User.UserID+@","+NewMember.Room.RoomID+@","+NewMember.IsMod+@");");
         }
 
-        public static void UpdateMember(DatabaseEmulation.Member Member)
+        public static void UpdateMember(Database.Emulation.Member Member)
         {
             if (MemberExists(Member.MemberID))
             {

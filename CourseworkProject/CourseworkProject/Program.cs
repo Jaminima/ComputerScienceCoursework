@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Database = CourseworkProject.Backend.Data.Database;
 
 namespace CourseworkProject
 {
@@ -10,8 +11,7 @@ namespace CourseworkProject
     {
         static void Main(string[] args)
         {
-            Backend.Data.DatabaseEmulation.Room Room = Backend.Data.DatabaseInteraction.Rooms.GetRoom.FromID(5);
-
+            Database.Emulation.KeyExchange KE = Database.Interaction.KeyExchange.GetKeyExchange.FromID(1);
             Console.ReadLine();
         }
     }

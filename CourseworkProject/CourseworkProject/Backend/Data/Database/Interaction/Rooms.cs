@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseworkProject.Backend.Data.DatabaseInteraction
+namespace CourseworkProject.Backend.Data.Database.Interaction
 {
     public static class Rooms
     {
         public static class GetRoom
         {
-            public static DatabaseEmulation.Room FromName(string RoomName)
+            public static Database.Emulation.Room FromName(string RoomName)
             {
                 List<String[]> RID = Init.SQLInstance.ExecuteReader(@"SELECT Rooms.RoomID, Rooms.RoomName
 FROM Rooms
@@ -20,11 +20,11 @@ WHERE (((Rooms.RoomName)='"+RoomName+@"'));
                 return null;
             }
 
-            public static DatabaseEmulation.Room FromID(int RID)
+            public static Database.Emulation.Room FromID(int RID)
             {
                 if (RoomExists(RID))
                 {
-                    DatabaseEmulation.Room Room = new DatabaseEmulation.Room(RID);
+                    Database.Emulation.Room Room = new Database.Emulation.Room(RID);
                     List<String[]> RData = Init.SQLInstance.ExecuteReader(@"SELECT Rooms.RoomID, Rooms.OwnerID, Rooms.RoomName, Rooms.ImageURL
 FROM Rooms
 WHERE (((Rooms.RoomID)="+RID+@"));
@@ -47,7 +47,7 @@ WHERE (((Rooms.RoomID)="+RID+@"));
             }
         }
 
-        public static void DeleteRoom(DatabaseEmulation.Room Room)
+        public static void DeleteRoom(Database.Emulation.Room Room)
         {
             Init.SQLInstance.Execute(@"DELETE Rooms.RoomID
 FROM Rooms
@@ -55,12 +55,12 @@ WHERE (((Rooms.RoomID)="+Room.RoomID+@"));
 ");
         }
 
-        public static void InsertRoom(DatabaseEmulation.NewRoom NewRoom)
+        public static void InsertRoom(Database.Emulation.NewRoom NewRoom)
         {
             Init.SQLInstance.Execute(@"INSERT INTO Rooms (OwnerID, RoomName, ImageURL) VALUES ("+NewRoom.Owner.UserID+@",'"+NewRoom.RoomName+@"','"+NewRoom.ImageURL+@"');");
         }
 
-        public static void UpdateRoom(DatabaseEmulation.Room Room)
+        public static void UpdateRoom(Database.Emulation.Room Room)
         {
             if (RoomExists(Room.RoomID))
             {

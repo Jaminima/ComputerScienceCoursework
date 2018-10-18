@@ -45,19 +45,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Backend\Data\DatabaseEmulation\BaseObject.cs" />
-    <Compile Include="Backend\Data\DatabaseEmulation\Channel.cs" />
-    <Compile Include="Backend\Data\DatabaseEmulation\KeyExchange.cs" />
-    <Compile Include="Backend\Data\DatabaseEmulation\Member.cs" />
-    <Compile Include="Backend\Data\DatabaseEmulation\Message.cs" />
-    <Compile Include="Backend\Data\DatabaseEmulation\Room.cs" />
-    <Compile Include="Backend\Data\DatabaseEmulation\User.cs" />
-    <Compile Include="Backend\Data\DatabaseInteraction\Channel.cs" />
-    <Compile Include="Backend\Data\DatabaseInteraction\Member.cs" />
-    <Compile Include="Backend\Data\DatabaseInteraction\Message.cs" />
-    <Compile Include="Backend\Data\DatabaseInteraction\Rooms.cs" />
-    <Compile Include="Backend\Data\DatabaseInteraction\SQL.cs" />
-    <Compile Include="Backend\Data\DatabaseInteraction\User.cs" />
+    <Compile Include="Backend\Data\Database\Emulation\BaseObject.cs" />
+    <Compile Include="Backend\Data\Database\Emulation\Channel.cs" />
+    <Compile Include="Backend\Data\Database\Emulation\KeyExchange.cs" />
+    <Compile Include="Backend\Data\Database\Emulation\Member.cs" />
+    <Compile Include="Backend\Data\Database\Emulation\Message.cs" />
+    <Compile Include="Backend\Data\Database\Emulation\Room.cs" />
+    <Compile Include="Backend\Data\Database\Emulation\User.cs" />
+    <Compile Include="Backend\Data\Database\Interaction\Channel.cs" />
+    <Compile Include="Backend\Data\Database\Interaction\KeyExchange.cs" />
+    <Compile Include="Backend\Data\Database\Interaction\Member.cs" />
+    <Compile Include="Backend\Data\Database\Interaction\Message.cs" />
+    <Compile Include="Backend\Data\Database\Interaction\Rooms.cs" />
+    <Compile Include="Backend\Data\Database\Interaction\SQL.cs" />
+    <Compile Include="Backend\Data\Database\Interaction\User.cs" />
     <Compile Include="Backend\Init.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

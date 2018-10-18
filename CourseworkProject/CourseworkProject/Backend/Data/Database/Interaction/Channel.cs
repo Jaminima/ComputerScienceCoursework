@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseworkProject.Backend.Data.DatabaseInteraction
+namespace CourseworkProject.Backend.Data.Database.Interaction
 {
     public static class Channel
     {
         public static class GetChannel
         {
-            public static DatabaseEmulation.Channel FromID(int CID)
+            public static Database.Emulation.Channel FromID(int CID)
             {
                 if (ChannelExists(CID))
                 {
-                    DatabaseEmulation.Channel Channel = new DatabaseEmulation.Channel(CID);
+                    Database.Emulation.Channel Channel = new Database.Emulation.Channel(CID);
                     List<String[]> CData = Init.SQLInstance.ExecuteReader(@"SELECT Channels.ChannelID, Channels.RoomID, Channels.Channelname, Channels.ModeratorOnly, Channels.ImageURL, Channels.PositionInRoom
 FROM Channels
 WHERE (((Channels.ChannelID)="+CID+@"));
@@ -30,11 +30,11 @@ WHERE (((Channels.ChannelID)="+CID+@"));
                 return null;
             }
 
-            public static DatabaseEmulation.Channel FromIDRoomChannel(int CID)
+            public static Database.Emulation.Channel FromIDRoomChannel(int CID)
             {
                 if (ChannelExists(CID))
                 {
-                    DatabaseEmulation.Channel Channel = new DatabaseEmulation.Channel(CID);
+                    Database.Emulation.Channel Channel = new Database.Emulation.Channel(CID);
                     List<String[]> CData = Init.SQLInstance.ExecuteReader(@"SELECT Channels.ChannelID, Channels.RoomID, Channels.Channelname, Channels.ModeratorOnly, Channels.ImageURL, Channels.PositionInRoom
 FROM Channels
 WHERE (((Channels.ChannelID)=" + CID + @"));
@@ -50,7 +50,7 @@ WHERE (((Channels.ChannelID)=" + CID + @"));
             }
         }
 
-        public static void DeleteChannel(DatabaseEmulation.Channel Channel)
+        public static void DeleteChannel(Database.Emulation.Channel Channel)
         {
             Init.SQLInstance.Execute(@"DELETE Channels.ChannelID
 FROM Channels
@@ -58,12 +58,12 @@ WHERE (((Channels.ChannelID)="+Channel.ChannelId+@"));
 ");
         }
 
-        public static void InsertChannel(DatabaseEmulation.NewChannel NewChannel)
+        public static void InsertChannel(Database.Emulation.NewChannel NewChannel)
         {
             Init.SQLInstance.Execute(@"INSERT INTO Channels (Channelname,ModeratorOnly,ImageURL,PositionInRoom) VALUES ('"+NewChannel.Channelname+@"',"+NewChannel.ModOnly+@",'"+NewChannel.ImageURL+@"',"+NewChannel.PositionInRoom+@");");
         }
 
-        public static void UpdateChannel(DatabaseEmulation.Channel Channel)
+        public static void UpdateChannel(Database.Emulation.Channel Channel)
         {
             if (ChannelExists(Channel.Room.RoomID, Channel.ChannelId))
             {

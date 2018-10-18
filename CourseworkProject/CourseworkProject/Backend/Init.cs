@@ -8,6 +8,6 @@ namespace CourseworkProject.Backend
 {
     public static class Init
     {
-        public static Data.DatabaseInteraction.SQL SQLInstance = new Data.DatabaseInteraction.SQL("Database");
+        public static Data.Database.Interaction.SQL SQLInstance = new Data.Database.Interaction.SQL("Database");
     }
 }

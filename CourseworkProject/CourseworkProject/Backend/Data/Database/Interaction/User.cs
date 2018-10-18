@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseworkProject.Backend.Data.DatabaseInteraction
+namespace CourseworkProject.Backend.Data.Database.Interaction
 {
     public static class User
     {
         public static class GetUser
         {
-            public static DatabaseEmulation.User FromID(int TID)
+            public static Database.Emulation.User FromID(int TID)
             {
                 if (UserExists(TID))
                 {
-                    DatabaseEmulation.User User = new DatabaseEmulation.User(TID);
+                    Database.Emulation.User User = new Database.Emulation.User(TID);
                     List<String[]> UData=Init.SQLInstance.ExecuteReader(@"SELECT UserData.UserID, UserData.UserName, UserData.HashedPassword, UserData.Nickname, UserData.ImageURl
 FROM UserData
 WHERE (((UserData.UserID)="+TID+@"));
@@ -28,7 +28,7 @@ WHERE (((UserData.UserID)="+TID+@"));
                 return null;
             }
 
-            public static DatabaseEmulation.User FromUsername(string Username)
+            public static Database.Emulation.User FromUsername(string Username)
             {
                 List<string[]> UserID = Init.SQLInstance.ExecuteReader(@"SELECT UserData.UserID, UserData.UserName
 FROM UserData
@@ -43,7 +43,7 @@ WHERE (((UserData.UserName)='"+Username+@"'));
 
         }
 
-        public static void DeleteUser(DatabaseEmulation.User User)
+        public static void DeleteUser(Database.Emulation.User User)
         {
             Init.SQLInstance.Execute(@"DELETE UserData.UserID
 FROM UserData
@@ -51,7 +51,7 @@ WHERE (((UserData.UserID)="+User.UserID+@"));
 ");
         }
 
-        public static void SaveNewUser(DatabaseEmulation.NewUser NewUser)
+        public static void SaveNewUser(Database.Emulation.NewUser NewUser)
         {
             if (!UsernameInUse(NewUser.UserName))
             {
@@ -59,7 +59,7 @@ WHERE (((UserData.UserID)="+User.UserID+@"));
             }
         }
 
-        public static void UpdateUser(DatabaseEmulation.User User)
+        public static void UpdateUser(Database.Emulation.User User)
         {
             if (UserExists(User.UserID)&&!UsernameInUse(User.UserID,User.UserName))
             {

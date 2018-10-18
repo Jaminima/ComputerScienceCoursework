@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseworkProject.Backend.Data.DatabaseEmulation
+namespace CourseworkProject.Backend.Data.Database.Emulation
 {
     public class NewChannel : BaseObject
     {
