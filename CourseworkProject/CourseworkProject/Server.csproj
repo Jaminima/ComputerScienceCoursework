@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Backend\Api\Get.cs" />
     <Compile Include="Backend\Data\Database\Emulation\BaseObject.cs" />
     <Compile Include="Backend\Data\Database\Emulation\Channel.cs" />
     <Compile Include="Backend\Data\Database\Emulation\KeyExchange.cs" />
@@ -60,6 +61,10 @@
     <Compile Include="Backend\Data\Database\Interaction\SQL.cs" />
     <Compile Include="Backend\Data\Database\Interaction\User.cs" />
     <Compile Include="Backend\Init.cs" />
+    <Compile Include="Backend\Networking\HTTPServer.cs" />
+    <Compile Include="Backend\Networking\Requests\GET\Handler.cs" />
+    <Compile Include="Backend\Networking\Requests\POST\Handler.cs" />
+    <Compile Include="Backend\Networking\ResponseObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

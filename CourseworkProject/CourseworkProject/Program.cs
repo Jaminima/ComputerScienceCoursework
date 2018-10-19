@@ -11,7 +11,7 @@ namespace CourseworkProject
     {
         static void Main(string[] args)
         {
-            Database.Emulation.KeyExchange KE = Database.Interaction.KeyExchange.GetKeyExchange.FromID(1);
+            Backend.Init.Start();
             Console.ReadLine();
         }
     }
