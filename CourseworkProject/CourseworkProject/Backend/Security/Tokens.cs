@@ -8,16 +8,11 @@ namespace CourseworkProject.Backend.Security
 {
     public static class Tokens
     {
-        public static Objects.Token CreateTokenLogin(Data.Database.Emulation.User user)
-        {
-            return new Objects.Token(CreateToken());
-        }
-
         static Random Rnd=new Random();
-        static string CreateToken()
+        public static string CreateToken()
         {
             string sToken = "";
-            for (int i = 0; i < 32; i++) { sToken += Char.ConvertFromUtf32(Rnd.Next(33, 127)); }
+            for (int i = 0; i < 32; i++) { sToken += Char.ConvertFromUtf32(Rnd.Next(40, 127)); }
             return sToken;
         }
     }

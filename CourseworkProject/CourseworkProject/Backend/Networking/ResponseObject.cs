@@ -35,6 +35,18 @@ namespace CourseworkProject.Backend.Networking
                 Response.Code = 405; Response.Message = "An item with that ID does not exist";
                 return Response;
             }
+            public static ResponseObject AuthTokenInvalid ()
+            {
+                ResponseObject Response = new ResponseObject();
+                Response.Code = 501; Response.Message = "AuthToken is Invalid";
+                return Response;
+            }
+            public static ResponseObject InsufficientPermission()
+            {
+                ResponseObject Response = new ResponseObject();
+                Response.Code = 5012; Response.Message = "You dont have permissions to do that";
+                return Response;
+            }
         }
 
     }

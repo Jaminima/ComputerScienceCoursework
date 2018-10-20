@@ -45,7 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Backend\Api\Get.cs" />
+    <Compile Include="Backend\Api\Get\KeyExchange.cs" />
+    <Compile Include="Backend\Api\Get\Member.cs" />
+    <Compile Include="Backend\Api\Get\Message.cs" />
+    <Compile Include="Backend\Api\Get\User.cs" />
     <Compile Include="Backend\Data\Database\Emulation\BaseObject.cs" />
     <Compile Include="Backend\Data\Database\Emulation\Channel.cs" />
     <Compile Include="Backend\Data\Database\Emulation\KeyExchange.cs" />
@@ -62,14 +65,14 @@
     <Compile Include="Backend\Data\Database\Interaction\User.cs" />
     <Compile Include="Backend\Init.cs" />
     <Compile Include="Backend\Networking\HTTPServer.cs" />
+    <Compile Include="Backend\Api\Get\Channel.cs" />
     <Compile Include="Backend\Networking\Requests\GET\Get.cs" />
     <Compile Include="Backend\Networking\Requests\GET\Handler.cs" />
+    <Compile Include="Backend\Api\Get\Room.cs" />
     <Compile Include="Backend\Networking\Requests\POST\Handler.cs" />
     <Compile Include="Backend\Networking\Requests\POST\Login.cs" />
     <Compile Include="Backend\Networking\ResponseObject.cs" />
     <Compile Include="Backend\Security\Login.cs" />
-    <Compile Include="Backend\Security\Objects\Login.cs" />
-    <Compile Include="Backend\Security\Objects\Token.cs" />
     <Compile Include="Backend\Security\Tokens.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

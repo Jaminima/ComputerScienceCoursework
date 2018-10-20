@@ -14,12 +14,12 @@ namespace CourseworkProject.Backend.Networking.Requests.POST
             Data.Database.Emulation.User User = Data.Database.Emulation.User.FromJson(StreamData);
             ResponseObject Response = new ResponseObject();
             if (!Data.Database.Interaction.User.UserExists(User.UserID)) { return ResponseObject.Defaults.ItemDoesntExist(); }
-            Security.Objects.Token Login = Security.Login.PerformLogin(User);
+            string Login = Security.Login.PerformLogin(User);
             if (Login != null)
             {
                 Response.Code = 200;
                 Response.Message = "Succesfully Signed In";
-                Response.ResponseData = Login.ToJson();
+                Response.ResponseData = "{\"AuthToken\":\""+Login+"\"}";
             }else
             {
                 Response.Code = 500;

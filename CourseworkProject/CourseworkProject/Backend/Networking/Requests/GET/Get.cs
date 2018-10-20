@@ -11,18 +11,20 @@ namespace CourseworkProject.Backend.Networking.Requests.GET
     {
         public static ResponseObject Handler(HttpListenerContext Context,string[] URLPath)
         {
+            Security.LoginToken Token = Security.Login.IsValidToken(Context);
+            if (!Token.IsValid) { return ResponseObject.Defaults.AuthTokenInvalid(); }
             if (URLPath[3] == "channel/")
-            { return Api.Get.Channel(URLPath); }
-            else if (URLPath[3] == "keyexchange/")
-            { return Api.Get.KeyExchange(URLPath); }
+            { return Api.Get.Channel.GetReponse(Token, URLPath); }
+            //else if (URLPath[3] == "keyexchange/")
+            //{ return Api.Get.KeyExchange(Token, URLPath); }
             else if (URLPath[3] == "member/")
-            { return Api.Get.Member(URLPath); }
+            { return Api.Get.Member.GetResponse(Token, URLPath); }
             else if (URLPath[3] == "message/")
-            { return Api.Get.Message(URLPath); }
+            { return Api.Get.Message.GetResponse(Token, URLPath); }
             else if (URLPath[3] == "room/")
-            { return Api.Get.Room(URLPath); }
+            { return Api.Get.Room.GetResponse(Token, URLPath); }
             else if (URLPath[3] == "user/")
-            { return Api.Get.User(URLPath); }
+            { return Api.Get.User.GetResponse(Token, URLPath); }
             else { return ResponseObject.Defaults.PathNotFound(); }
         }
     }
