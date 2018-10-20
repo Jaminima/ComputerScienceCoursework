@@ -16,6 +16,7 @@ namespace CourseworkProject.Backend.Networking.Requests.GET
             if (URLPath[1] == "api/")
             {
                 if (URLPath[2] == "get/")
+<<<<<<< Updated upstream
                 {
                     if (URLPath[3] == "channel/")
                     { return Api.Get.Channel(URLPath); }
@@ -31,6 +32,9 @@ namespace CourseworkProject.Backend.Networking.Requests.GET
                     { return Api.Get.User(URLPath); }
                     else { return ResponseObject.Defaults.PathNotFound(); }
                 }
+=======
+                { return Get.Handler(Context,URLPath); }
+>>>>>>> Stashed changes
                 else { return ResponseObject.Defaults.PathNotFound(); }
             }
             else { return ResponseObject.Defaults.PathNotFound(); }

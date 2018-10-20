@@ -62,9 +62,21 @@
     <Compile Include="Backend\Data\Database\Interaction\User.cs" />
     <Compile Include="Backend\Init.cs" />
     <Compile Include="Backend\Networking\HTTPServer.cs" />
+<<<<<<< Updated upstream
     <Compile Include="Backend\Networking\Requests\GET\Handler.cs" />
     <Compile Include="Backend\Networking\Requests\POST\Handler.cs" />
     <Compile Include="Backend\Networking\ResponseObject.cs" />
+=======
+    <Compile Include="Backend\Networking\Requests\GET\Get.cs" />
+    <Compile Include="Backend\Networking\Requests\GET\Handler.cs" />
+    <Compile Include="Backend\Networking\Requests\POST\Handler.cs" />
+    <Compile Include="Backend\Networking\Requests\POST\Login.cs" />
+    <Compile Include="Backend\Networking\ResponseObject.cs" />
+    <Compile Include="Backend\Security\Login.cs" />
+    <Compile Include="Backend\Security\Objects\Login.cs" />
+    <Compile Include="Backend\Security\Objects\Token.cs" />
+    <Compile Include="Backend\Security\Tokens.cs" />
+>>>>>>> Stashed changes
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -72,6 +84,8 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Codes.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -30,6 +30,25 @@ WHERE (((Messages.MessageID)="+MID+@"));
                 return null;
             }
 
+            public static Database.Emulation.Message FromIDChannel(int MID)
+            {
+                if (MessageExists(MID))
+                {
+                    Database.Emulation.Message Message = new Database.Emulation.Message(MID);
+                    List<String[]> MData = Init.SQLInstance.ExecuteReader(@"SELECT Messages.ChannelID, Messages.UserID, Messages.Message, Messages.ImageURL, Messages.SentDateTime 
+FROM Messages
+WHERE (((Messages.MessageID)=" + MID + @"));
+");
+                    if (MData.Count == 0) { return null; }
+                    Message.User = User.GetUser.FromID(int.Parse(MData[0][1]));
+                    Message.Body = MData[0][2];
+                    Message.ImageURL = MData[0][3];
+                    Message.SendDateTime = DateTime.Parse(MData[0][4]);
+                    return Message;
+                }
+                return null;
+            }
+
             public static Database.Emulation.Message[] RecentInChannel(Database.Emulation.Channel Channel,int MessageCount)
             {
                 List<String[]> MData = Init.SQLInstance.ExecuteReader(@"SELECT Messages.MessageID, Messages.UserID, Messages.Message, Messages.ImageURL, Messages.SentDate
