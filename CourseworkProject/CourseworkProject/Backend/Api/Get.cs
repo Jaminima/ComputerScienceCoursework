@@ -14,11 +14,7 @@ namespace CourseworkProject.Backend.Api
             int RID;
             try { RID = int.Parse(URLPath[4]); } catch { return Networking.ResponseObject.Defaults.InvalidParameter(); }
             Response.Code = 200;
-<<<<<<< Updated upstream
-            Data.Database.Emulation.Channel Channel = Data.Database.Interaction.Channel.GetChannel.FromID(RID);
-=======
             Data.Database.Emulation.Channel Channel = Data.Database.Interaction.Channel.GetChannel.FromIDRoomChannel(RID);
->>>>>>> Stashed changes
             if (Channel == null) { return Networking.ResponseObject.Defaults.ItemDoesntExist(); }
             Response.ResponseData = Channel.ToJson();
             Response.Message = "Succesfully retrieved Channel data";
@@ -34,11 +30,7 @@ namespace CourseworkProject.Backend.Api
             Data.Database.Emulation.KeyExchange KeyExchange = Data.Database.Interaction.KeyExchange.GetKeyExchange.FromID(RID);
             if (KeyExchange == null) { return Networking.ResponseObject.Defaults.ItemDoesntExist(); }
             Response.ResponseData = KeyExchange.ToJson();
-<<<<<<< Updated upstream
-            Response.Message = "Succesfully retrieved Channel data";
-=======
             Response.Message = "Succesfully retrieved KeyExchange data";
->>>>>>> Stashed changes
             return Response;
         }
 
@@ -48,17 +40,10 @@ namespace CourseworkProject.Backend.Api
             int RID;
             try { RID = int.Parse(URLPath[4]); } catch { return Networking.ResponseObject.Defaults.InvalidParameter(); }
             Response.Code = 200;
-<<<<<<< Updated upstream
-            Data.Database.Emulation.Member Member = Data.Database.Interaction.Member.GetMember.FromID(RID);
-            if (Member == null) { return Networking.ResponseObject.Defaults.ItemDoesntExist(); }
-            Response.ResponseData = Member.ToJson();
-            Response.Message = "Succesfully retrieved Channel data";
-=======
             Data.Database.Emulation.Member Member = Data.Database.Interaction.Member.GetMember.FromIDRoomMember(RID);
             if (Member == null) { return Networking.ResponseObject.Defaults.ItemDoesntExist(); }
             Response.ResponseData = Member.ToJson();
             Response.Message = "Succesfully retrieved Member data";
->>>>>>> Stashed changes
             return Response;
         }
 
@@ -68,17 +53,10 @@ namespace CourseworkProject.Backend.Api
             int RID;
             try { RID = int.Parse(URLPath[4]); } catch { return Networking.ResponseObject.Defaults.InvalidParameter(); }
             Response.Code = 200;
-<<<<<<< Updated upstream
-            Data.Database.Emulation.Message Message = Data.Database.Interaction.Message.GetMessage.FromID(RID);
-            if (Message == null) { return Networking.ResponseObject.Defaults.ItemDoesntExist(); }
-            Response.ResponseData = Message.ToJson();
-            Response.Message = "Succesfully retrieved Channel data";
-=======
             Data.Database.Emulation.Message Message = Data.Database.Interaction.Message.GetMessage.FromIDChannel(RID);
             if (Message == null) { return Networking.ResponseObject.Defaults.ItemDoesntExist(); }
             Response.ResponseData = Message.ToJson();
             Response.Message = "Succesfully retrieved Message data";
->>>>>>> Stashed changes
             return Response;
         }
 
@@ -91,11 +69,7 @@ namespace CourseworkProject.Backend.Api
             Data.Database.Emulation.Room Room = Data.Database.Interaction.Rooms.GetRoom.FromID(RID);
             if (Room == null) { return Networking.ResponseObject.Defaults.ItemDoesntExist(); }
             Response.ResponseData = Room.ToJson();
-<<<<<<< Updated upstream
-            Response.Message = "Succesfully retrieved room data";
-=======
             Response.Message = "Succesfully retrieved Room data";
->>>>>>> Stashed changes
             return Response;
         }
 
@@ -108,11 +82,7 @@ namespace CourseworkProject.Backend.Api
             Data.Database.Emulation.User User = Data.Database.Interaction.User.GetUser.FromID(RID);
             if (User == null) { return Networking.ResponseObject.Defaults.ItemDoesntExist(); }
             Response.ResponseData = User.ToJson();
-<<<<<<< Updated upstream
-            Response.Message = "Succesfully retrieved Channel data";
-=======
             Response.Message = "Succesfully retrieved User data";
->>>>>>> Stashed changes
             return Response;
         }
 

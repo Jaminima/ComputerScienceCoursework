@@ -26,11 +26,7 @@ namespace CourseworkProject.Backend.Networking
             public static ResponseObject InvalidParameter()
             {
                 ResponseObject Response = new ResponseObject();
-<<<<<<< Updated upstream
-                Response.Code = 101; Response.Message = "Invalid Parameter";
-=======
                 Response.Code = 300; Response.Message = "Invalid Parameter";
->>>>>>> Stashed changes
                 return Response;
             }
             public static ResponseObject ItemDoesntExist()

@@ -12,8 +12,6 @@ namespace CourseworkProject.Backend.Networking.Requests.POST
         public static ResponseObject GetResponse(HttpListenerContext Context)
         {
             ResponseObject Response = new ResponseObject();
-<<<<<<< Updated upstream
-=======
             string[] URLPath = Context.Request.Url.Segments;
             string StreamString = new System.IO.StreamReader(Context.Request.InputStream).ReadToEnd();
             Newtonsoft.Json.Linq.JToken StreamData = Newtonsoft.Json.Linq.JToken.Parse(StreamString);
@@ -23,7 +21,6 @@ namespace CourseworkProject.Backend.Networking.Requests.POST
                 { return Login.PerformLogin(Context, URLPath,StreamData); }
                 else { return ResponseObject.Defaults.PathNotFound(); }
             }
->>>>>>> Stashed changes
             return Response;
         }
     }
