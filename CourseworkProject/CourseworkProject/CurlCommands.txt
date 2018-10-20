@@ -1,0 +1,5 @@
+﻿Login
+curl -X POST -d '{"UserID": 11,"UserName": "Jaminima","HashedPassword": "Yeet","Nickname": "Jam","ImageUrl": null}' 'http://localhost:1234/api/login'
+
+Get Some Details
+curl -X GET 'http://localhost:1234/api/get/ITEM/ID' -H 'AuthToken: AUTHTOKEN'

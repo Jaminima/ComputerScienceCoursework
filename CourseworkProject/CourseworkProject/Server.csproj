@@ -49,6 +49,7 @@
     <Compile Include="Backend\Api\Get\Member.cs" />
     <Compile Include="Backend\Api\Get\Message.cs" />
     <Compile Include="Backend\Api\Get\User.cs" />
+    <Compile Include="Backend\Api\Login.cs" />
     <Compile Include="Backend\Data\Database\Emulation\BaseObject.cs" />
     <Compile Include="Backend\Data\Database\Emulation\Channel.cs" />
     <Compile Include="Backend\Data\Database\Emulation\KeyExchange.cs" />
@@ -70,7 +71,6 @@
     <Compile Include="Backend\Networking\Requests\GET\Handler.cs" />
     <Compile Include="Backend\Api\Get\Room.cs" />
     <Compile Include="Backend\Networking\Requests\POST\Handler.cs" />
-    <Compile Include="Backend\Networking\Requests\POST\Login.cs" />
     <Compile Include="Backend\Networking\ResponseObject.cs" />
     <Compile Include="Backend\Security\Login.cs" />
     <Compile Include="Backend\Security\Tokens.cs" />
@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Codes.txt" />
+    <Content Include="CurlCommands.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
