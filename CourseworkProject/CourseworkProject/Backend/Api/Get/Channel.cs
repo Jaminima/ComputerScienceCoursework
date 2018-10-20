@@ -14,7 +14,7 @@ namespace CourseworkProject.Backend.Api.Get
             int RID;
             try { RID = int.Parse(URLPath[4]); } catch { return Networking.ResponseObject.Defaults.InvalidParameter(); }
             Data.Database.Emulation.Channel Channel = Data.Database.Interaction.Channel.GetChannel.FromID(RID);
-            if (!(Room.IsUserInRoom(Token.User, Channel.Room)&&!Channel.ModOnly)||!Room.IsUserModInRoom(Token.User,Channel.Room)) { return Networking.ResponseObject.Defaults.InsufficientPermission(); }
+            if (!((Room.IsUserInRoom(Token.User, Channel.Room)&&!Channel.ModOnly)||Room.IsUserModInRoom(Token.User,Channel.Room))) { return Networking.ResponseObject.Defaults.InsufficientPermission(); }
             Channel.Room = null;
             if (Channel == null) { return Networking.ResponseObject.Defaults.ItemDoesntExist(); }
             Response.ResponseData = Channel.ToJson(); Response.Code = 200;
