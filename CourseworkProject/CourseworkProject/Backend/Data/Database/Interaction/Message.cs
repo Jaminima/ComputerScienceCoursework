@@ -51,21 +51,21 @@ WHERE (((Messages.MessageID)=" + MID + @"));
 
             public static Database.Emulation.Message[] RecentInChannel(Database.Emulation.Channel Channel,int MessageCount)
             {
-                List<String[]> MData = Init.SQLInstance.ExecuteReader(@"SELECT Messages.MessageID, Messages.UserID, Messages.Message, Messages.ImageURL, Messages.SentDate
+                List<String[]> MData = Init.SQLInstance.ExecuteReader(@"SELECT Messages.MessageID, Messages.ChannelID, Messages.UserID, Messages.Message, Messages.ImageURL, Messages.SentDateTime
 FROM Messages
 WHERE (((Messages.ChannelID)="+Channel.ChannelId+@"))
-ORDER BY Messages.SentDate DESC;
+ORDER BY Messages.SentDateTime DESC;
 ");
                 List<Database.Emulation.Message> Messages = new List<Database.Emulation.Message> { };
                 if (MData.Count == 0) { return null; }
                 for (int i = 0; i < MData.Count && i < MessageCount; i++)
                 {
                     Database.Emulation.Message M = new Database.Emulation.Message(int.Parse(MData[i][0]));
-                    M.User = User.GetUser.FromID(int.Parse(MData[i][1]));
-                    M.Channel = Channel;
-                    M.Body = MData[i][2];
-                    M.ImageURL = MData[i][3];
-                    M.SendDateTime = DateTime.Parse(MData[0][4]);
+                    M.User = User.GetUser.FromID(int.Parse(MData[i][2]));
+                    M.Channel = null;
+                    M.Body = MData[i][3];
+                    M.ImageURL = MData[i][4];
+                    M.SendDateTime = DateTime.Parse(MData[0][5]);
                     Messages.Add(M);
                 }
                 return Messages.ToArray<Database.Emulation.Message>();

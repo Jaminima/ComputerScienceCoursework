@@ -11,6 +11,7 @@ namespace CourseworkProject.Backend.Networking
         public int Code=100;
         public string Message="Invalid Request Method";
         public Newtonsoft.Json.Linq.JToken ResponseData;
+        public bool Encrypted=true;
         public Newtonsoft.Json.Linq.JToken ToJson()
         {
             return Newtonsoft.Json.Linq.JToken.FromObject(this);

@@ -45,6 +45,25 @@ WHERE (((Memberships.MembershipID)=" + MID + @"));
                 return null;
             }
 
+            public static List<Database.Emulation.Member> UserMemberships(int UID)
+            {
+                List<String[]> MData= Init.SQLInstance.ExecuteReader(@"SELECT Memberships.MembershipID, Memberships.UserID, Memberships.RoomID, Memberships.IsModerator
+FROM (UserData INNER JOIN Rooms ON UserData.UserID = Rooms.OwnerID) INNER JOIN Memberships ON (UserData.UserID = Memberships.UserID) AND (Rooms.RoomID = Memberships.RoomID)
+WHERE (((Memberships.UserID)=" + UID + @"));
+");
+                List<Database.Emulation.Member> Memberships = new List<Emulation.Member> { };
+                if (MData.Count == 0) { return null; }
+                foreach (String[] Item in MData)
+                {
+                    Database.Emulation.Member M = new Emulation.Member(int.Parse(Item[0]));
+                    M.User = null;/*User.GetUser.FromID(int.Parse(Item[1]));*/
+                    M.Room = Rooms.GetRoom.FromID(int.Parse(Item[2]));
+                    M.IsMod = Item[3] == "True";
+                    Memberships.Add(M);
+                }
+                return Memberships;
+            }
+
         }
 
         public static void DeleteMember(Database.Emulation.Member Member)

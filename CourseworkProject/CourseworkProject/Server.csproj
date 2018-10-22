@@ -72,6 +72,8 @@
     <Compile Include="Backend\Api\Get\Room.cs" />
     <Compile Include="Backend\Networking\Requests\POST\Handler.cs" />
     <Compile Include="Backend\Networking\ResponseObject.cs" />
+    <Compile Include="Backend\Security\DiffieHelman.cs" />
+    <Compile Include="Backend\Security\Encryption.cs" />
     <Compile Include="Backend\Security\Login.cs" />
     <Compile Include="Backend\Security\Tokens.cs" />
     <Compile Include="Program.cs" />

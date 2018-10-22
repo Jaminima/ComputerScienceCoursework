@@ -8,7 +8,7 @@ namespace CourseworkProject.Backend.Api.Get
 {
     public static class Message
     {
-        public static Networking.ResponseObject GetResponse(Security.LoginToken Token, string[] URLPath)
+        public static Networking.ResponseObject GetMessage(Security.LoginToken Token, string[] URLPath)
         {
             Networking.ResponseObject Response = new Networking.ResponseObject();
             int RID;
