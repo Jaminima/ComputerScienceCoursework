@@ -12,7 +12,10 @@ namespace CourseworkProject.Backend.Security
         public static string CreateToken()
         {
             string sToken = "";
-            for (int i = 0; i < 32; i++) { sToken += Char.ConvertFromUtf32(Rnd.Next(40, 127)); }
+            for (int i = 0; i < 32; i++) {
+                sToken += Char.ConvertFromUtf32(Rnd.Next(40, 127));
+            }
+            sToken.Replace("\\", "/");
             return sToken;
         }
     }

@@ -8,7 +8,7 @@ namespace CourseworkProject.Backend.Api.Get
 {
     public static class Room
     {
-        public static Networking.ResponseObject GetResponse(Security.LoginToken Token, string[] URLPath)
+        public static Networking.ResponseObject GetRoom(Security.LoginToken Token, string[] URLPath)
         {
             Networking.ResponseObject Response = new Networking.ResponseObject();
             int RID;

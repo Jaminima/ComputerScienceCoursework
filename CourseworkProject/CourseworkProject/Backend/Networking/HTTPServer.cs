@@ -32,6 +32,7 @@ namespace CourseworkProject.Backend.Networking
             ResponseObject ResponseData=new ResponseObject();
             if (Context.Request.HttpMethod == "GET") { ResponseData = Requests.GET.Handler.GetResponse(Context); }
             else if (Context.Request.HttpMethod == "POST") { ResponseData = Requests.POST.Handler.GetResponse(Context); }
+            ResponseData = Security.Encryption.PerformEncryption(ResponseData, Context);
             HttpListenerResponse Response = Context.Response;
             byte[] ResponseBytes = Encoding.UTF8.GetBytes(ResponseData.ToJson().ToString());
             Response.StatusCode = 200;

@@ -11,9 +11,10 @@ namespace CourseworkProject.Backend.Api
     {
         public static Networking.ResponseObject PerformLogin(HttpListenerContext Context, string[] URLPath, Newtonsoft.Json.Linq.JToken StreamData)
         {
-            Data.Database.Emulation.User User = Data.Database.Emulation.User.FromJson(StreamData);
+            Data.Database.Emulation.User User = Data.Database.Interaction.User.GetUser.FromUsername(StreamData["UserName"].ToString());
             Networking.ResponseObject Response = new Networking.ResponseObject();
-            if (!Data.Database.Interaction.User.UserExists(User.UserID)) { return Networking.ResponseObject.Defaults.ItemDoesntExist(); }
+            if (User==null) { return Networking.ResponseObject.Defaults.ItemDoesntExist(); }
+            User.HashedPassword = StreamData["HashedPassword"].ToString();
             string Login = Security.Login.PerformLogin(User);
             if (Login != null)
             {

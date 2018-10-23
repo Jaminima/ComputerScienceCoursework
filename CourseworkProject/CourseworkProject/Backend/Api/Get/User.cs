@@ -8,7 +8,7 @@ namespace CourseworkProject.Backend.Api.Get
 {
     public static class User
     {
-        public static Networking.ResponseObject GetResponse(Security.LoginToken Token, string[] URLPath)
+        public static Networking.ResponseObject GetUser(Security.LoginToken Token, string[] URLPath)
         {
             Networking.ResponseObject Response = new Networking.ResponseObject();
             int RID;
@@ -18,6 +18,19 @@ namespace CourseworkProject.Backend.Api.Get
             if (User == null) { return Networking.ResponseObject.Defaults.ItemDoesntExist(); }
             Response.ResponseData = User.ToJson();
             Response.Message = "Succesfully retrieved User data";
+            return Response;
+        }
+
+        public static Networking.ResponseObject GetUserMemberships(Security.LoginToken Token, string[] URLPath)
+        {
+            Networking.ResponseObject Response = new Networking.ResponseObject();
+            //int RID;
+            //try { RID = int.Parse(URLPath[4]); } catch { return Networking.ResponseObject.Defaults.InvalidParameter(); }
+            Response.Code = 200;
+            List<Data.Database.Emulation.Member> Memberships = Data.Database.Interaction.Member.GetMember.UserMemberships(Token.User.UserID);
+            if (Memberships == null) { return Networking.ResponseObject.Defaults.ItemDoesntExist(); }
+            Response.ResponseData = Newtonsoft.Json.Linq.JToken.FromObject(Memberships);
+            Response.Message = "Succesfully retrieved Memberships";
             return Response;
         }
     }
