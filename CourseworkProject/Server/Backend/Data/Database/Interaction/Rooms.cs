@@ -1,0 +1,96 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CourseworkProject.Backend.Data.Database.Interaction
+{
+    public static class Rooms
+    {
+        public static class GetRoom
+        {
+            public static Database.Emulation.Room FromName(string RoomName)
+            {
+                List<String[]> RID = Init.SQLInstance.ExecuteReader(@"SELECT Rooms.RoomID, Rooms.RoomName
+FROM Rooms
+WHERE (((Rooms.RoomName)='"+RoomName+@"'));
+");
+                if (RID.Count != 0) { return FromID(int.Parse(RID[0][0])); }
+                return null;
+            }
+
+            public static Database.Emulation.Room FromID(int RID)
+            {
+                if (RoomExists(RID))
+                {
+                    Database.Emulation.Room Room = new Database.Emulation.Room(RID);
+                    List<String[]> RData = Init.SQLInstance.ExecuteReader(@"SELECT Rooms.RoomID, Rooms.OwnerID, Rooms.RoomName, Rooms.ImageURL
+FROM Rooms
+WHERE (((Rooms.RoomID)="+RID+@"));
+");
+                    if (RData.Count == 0) { return null; }
+                    Room.Owner = User.GetUser.FromID(int.Parse(RData[0][1]));
+                    Room.RoomName = RData[0][2];
+                    Room.ImageURL = RData[0][3];
+                    foreach(int MID in Member.GetAllMemberIdsInRoom(RID))
+                    {
+                        Room.Members.Add(Member.GetMember.FromIDRoomMember(MID));
+                    }
+                    foreach (int CID in Channel.GetChannelIdsInRoom(RID))
+                    {
+                        Room.Channels.Add(Channel.GetChannel.FromIDRoomChannel(CID));
+                    }
+                    return Room;
+                }
+                return null;
+            }
+        }
+
+        public static void DeleteRoom(Database.Emulation.Room Room)
+        {
+            Init.SQLInstance.Execute(@"DELETE Rooms.RoomID
+FROM Rooms
+WHERE (((Rooms.RoomID)="+Room.RoomID+@"));
+");
+        }
+
+        public static void InsertRoom(Database.Emulation.NewRoom NewRoom)
+        {
+            Init.SQLInstance.Execute(@"INSERT INTO Rooms (OwnerID, RoomName, ImageURL) VALUES ("+NewRoom.Owner.UserID+@",'"+NewRoom.RoomName+@"','"+NewRoom.ImageURL+@"');");
+        }
+
+        public static void UpdateRoom(Database.Emulation.Room Room)
+        {
+            if (RoomExists(Room.RoomID))
+            {
+                Init.SQLInstance.Execute(@"UPDATE Rooms SET Rooms.OwnerID = "+Room.Owner.UserID+@", Rooms.RoomName = '"+Room.RoomName+@"', Rooms.ImageURL = '"+Room.ImageURL+@"'
+WHERE(((Rooms.RoomID) = "+Room.RoomID+@"));
+                ");
+            }
+        }
+
+        public static bool RoomExists(int RID)
+        {
+            return GetAllRoomIds().Contains(RID);
+        }
+
+        public static int[] GetAllRoomIds()
+        {
+            List<string[]> StrIds = Init.SQLInstance.ExecuteReader(@"SELECT Rooms.RoomID
+FROM Rooms;
+");
+            if (StrIds.Count != 0)
+            {
+                List<int> IntIds = new List<int> { };
+                foreach (string[] Id in StrIds)
+                {
+                    IntIds.Add(int.Parse(Id[0]));
+                }
+                return IntIds.ToArray<int>();
+            }
+            return new int[] { };
+        }
+
+    }
+}

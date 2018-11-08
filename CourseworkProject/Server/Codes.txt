@@ -1,0 +1,6 @@
+﻿404 -- Path doesnt exist
+405 -- Requested Object doesnt exist
+
+300 -- Invalid Parameter
+
+500 -- Login Failed
