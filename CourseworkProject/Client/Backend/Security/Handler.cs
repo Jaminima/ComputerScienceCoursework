@@ -10,6 +10,7 @@ namespace Client.Backend.Security
     public static class Handler
     {
         public static EncryptionObject Encryption;
+        public static string LoginToken;
 
         public static void Start()
         {

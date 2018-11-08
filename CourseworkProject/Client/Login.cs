@@ -29,7 +29,9 @@ namespace Client
 
         private void Btn_Login_Click(object sender, EventArgs e)
         {
-            Backend.Networking.ResponseObject Response = Backend.Networking.WebRequests.POSTRequest("api/login",null,Newtonsoft.Json.Linq.JToken.Parse(@"{'UserName':'"+Txt_UserName.Text+@"','HashedPassword':'"+Backend.Security.Hasher.Hash(Txt_Password.Text)+@"'}"));
+            Backend.Security.Handler.LoginToken = Backend.Api.Login.PerformLogin(Txt_UserName.Text, Txt_Password.Text);
+            if (Backend.Security.Handler.LoginToken == null) { MessageBox.Show("User Name or Password is invalid"); }
+            else { new Main().Show(); }
         }
     }
 }
