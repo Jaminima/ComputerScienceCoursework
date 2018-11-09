@@ -11,7 +11,7 @@ namespace Client.Backend.Security
     {
         public static EncryptionObject PerformDiffieHelman()
         {
-            int G=GetSmallPrime(), N=Init.Rnd.Next(0,200), A=Init.Rnd.Next(G,N);
+            int G=GetSmallPrime(), N=Init.Rnd.Next(G+1,200), A=Init.Rnd.Next(G,N);
             BigInteger GA = BigInteger.Remainder(BigInteger.Pow(G, A), N);
             Dictionary<string,string> Headers = new Dictionary<string, string> { };
             Headers.Add("g", G.ToString()); Headers.Add("n", N.ToString()); Headers.Add("ga", GA.ToString());

@@ -29,8 +29,8 @@ namespace Client
 
         private void Btn_Login_Click(object sender, EventArgs e)
         {
-            Backend.Security.Handler.LoginToken = Backend.Api.Login.PerformLogin(Txt_UserName.Text, Txt_Password.Text);
-            if (Backend.Security.Handler.LoginToken == null) { MessageBox.Show("User Name or Password is invalid"); }
+            bool LoggedIn = Backend.Api.Login.PerformLogin(Txt_UserName.Text, Txt_Password.Text);
+            if (!LoggedIn) { MessageBox.Show("User Name or Password is invalid"); }
             else { new Main().Show(); }
         }
     }

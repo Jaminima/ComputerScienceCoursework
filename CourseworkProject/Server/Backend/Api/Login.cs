@@ -20,7 +20,8 @@ namespace CourseworkProject.Backend.Api
             {
                 Response.Code = 200;
                 Response.Message = "Succesfully Signed In";
-                Response.ResponseData = Newtonsoft.Json.Linq.JToken.Parse("{\"AuthToken\":\"" + Login + "\"}");
+                User.HashedPassword = null;
+                Response.ResponseData = Newtonsoft.Json.Linq.JToken.Parse(@"{'AuthToken':'" + Login + @"','User':'"+User.ToJson().ToString()+@"'}");
             }
             else
             {

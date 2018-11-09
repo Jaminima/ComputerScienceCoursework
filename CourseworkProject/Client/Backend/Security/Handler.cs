@@ -11,6 +11,7 @@ namespace Client.Backend.Security
     {
         public static EncryptionObject Encryption;
         public static string LoginToken;
+        public static Newtonsoft.Json.Linq.JToken ThisUser;
 
         public static void Start()
         {

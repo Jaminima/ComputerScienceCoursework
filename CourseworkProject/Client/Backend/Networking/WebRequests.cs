@@ -19,6 +19,7 @@ namespace Client.Backend.Networking
                 { Request.Headers.Add(Pair.Key, Pair.Value); }
             }
             if (Security.Handler.Encryption != null) { Request.Headers.Add("EncryptionToken", Security.Handler.Encryption.Token); }
+            if (Security.Handler.LoginToken != null) { Request.Headers.Add("AuthToken", Security.Handler.LoginToken); }
             WebResponse Response = Request.GetResponse();
             string Data = new System.IO.StreamReader(Response.GetResponseStream()).ReadToEnd();
             return Newtonsoft.Json.Linq.JToken.Parse(Data).ToObject<ResponseObject>();
@@ -34,6 +35,7 @@ namespace Client.Backend.Networking
                 { Request.Headers.Add(Pair.Key, Pair.Value); }
             }
             if (Security.Handler.Encryption != null) { Request.Headers.Add("EncryptionToken", Security.Handler.Encryption.Token); }
+            if (Security.Handler.LoginToken != null) { Request.Headers.Add("AuthToken", Security.Handler.LoginToken); }
             if (Data != null)
             {
                 byte[] bData = Encoding.UTF8.GetBytes(Data.ToString());
