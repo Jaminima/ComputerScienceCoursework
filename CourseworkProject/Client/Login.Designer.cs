@@ -43,6 +43,7 @@
             this.Txt_UserName.Name = "Txt_UserName";
             this.Txt_UserName.Size = new System.Drawing.Size(144, 20);
             this.Txt_UserName.TabIndex = 0;
+            this.Txt_UserName.Text = "Jaminima";
             // 
             // label1
             // 
@@ -70,6 +71,7 @@
             this.Txt_Password.PasswordChar = '*';
             this.Txt_Password.Size = new System.Drawing.Size(144, 20);
             this.Txt_Password.TabIndex = 2;
+            this.Txt_Password.Text = "Pwrd";
             // 
             // Btn_Cancel
             // 

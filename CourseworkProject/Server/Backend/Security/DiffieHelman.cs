@@ -20,7 +20,6 @@ namespace CourseworkProject.Backend.Security
             int B = Rnd.Next(G,N);
             BigInteger GA = BigInteger.Parse(Context.Request.Headers["ga"]);
             BigInteger GABA = BigInteger.Remainder(BigInteger.Pow(GA, B),N);
-            Console.WriteLine(GABA+"--"+B);
             string Token=Encryption.CreateToken(GABA);
             ResponseObject.Code = 200; ResponseObject.Message = "Succesfully performed DiffieHelman";
             ResponseObject.Encrypted = false;

@@ -21,5 +21,13 @@ namespace Client.Backend.Api
             if (UserResponse.Code == 200) { return UserResponse.ResponseData.ToObject<List<Data.Database.Emulation.Member>>(); }
             return null;
         }
+
+        public static List<Data.Database.Emulation.Message> RecentMessages(int CID)
+        {
+            Networking.ResponseObject UserResponse = Networking.WebRequests.GETRequest("/api/get/recentmessages/"+CID, null);
+            if (UserResponse.Code == 200) { return UserResponse.ResponseData.ToObject<List<Data.Database.Emulation.Message>>(); }
+            return null;
+        }
+
     }
 }

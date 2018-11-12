@@ -9,6 +9,15 @@ namespace Client.Backend.Networking
 {
     public static class WebRequests
     {
+
+        public static System.IO.Stream GETRequest(string URL)
+        {
+            WebRequest Request = WebRequest.Create(URL);
+            Request.Method = "GET";
+            WebResponse Response = Request.GetResponse();
+            return Response.GetResponseStream();
+        }
+
         public static ResponseObject GETRequest(string Path,Dictionary<string,string> Headers)
         {
             WebRequest Request = WebRequest.Create("http://localhost:1234/"+Path);

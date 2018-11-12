@@ -31,7 +31,7 @@ namespace Client
         {
             bool LoggedIn = Backend.Api.Login.PerformLogin(Txt_UserName.Text, Txt_Password.Text);
             if (!LoggedIn) { MessageBox.Show("User Name or Password is invalid"); }
-            else { new Main().Show(); }
+            else { new Main().Show(); this.Hide(); }
         }
     }
 }
