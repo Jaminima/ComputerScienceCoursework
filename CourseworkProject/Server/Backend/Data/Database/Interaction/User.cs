@@ -24,6 +24,7 @@ WHERE (((UserData.UserID)="+TID+@"));
                     User.UserName = UData[0][1];
                     if (WithPassword) { User.HashedPassword = UData[0][2]; }
                     User.Nickname = UData[0][3];
+                    User.ImageUrl = UData[0][4];
                     return User;
                 }
                 return null;

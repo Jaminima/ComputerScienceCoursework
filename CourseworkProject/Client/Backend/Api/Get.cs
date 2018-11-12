@@ -29,5 +29,12 @@ namespace Client.Backend.Api
             return null;
         }
 
+        public static Data.Database.Emulation.Room Room(int RID)
+        {
+            Networking.ResponseObject UserResponse = Networking.WebRequests.GETRequest("/api/get/room/" + RID, null);
+            if (UserResponse.Code == 200) { return UserResponse.ResponseData.ToObject<Data.Database.Emulation.Room>(); }
+            return null;
+        }
+
     }
 }

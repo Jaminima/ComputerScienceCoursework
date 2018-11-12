@@ -23,12 +23,14 @@ namespace Client
         {
             UpdateRooms();
             CurrentRoom = 0;
-            UpdateChannels();
             CurrentChannel = Memberships[0].Room.Channels[0].ChannelId;
         }
 
         public void UpdateRooms()
         {
+            Table_Channels.Controls.Clear();
+            Tbl_Messages.Controls.Clear();
+            Table_Rooms.Controls.Clear();
             Memberships = Backend.Api.Get.Memberships();
             for (int i = 0; i < Memberships.Count && i < 12; i++)
             {
@@ -37,24 +39,28 @@ namespace Client
                 RoomIcon.Width = 50; RoomIcon.Height = 50;
                 RoomIcon.BackColor = Color.Green;
                 RoomIcon.SizeMode = PictureBoxSizeMode.StretchImage;
-                RoomIcon.Image = Image.FromStream(Backend.Networking.WebRequests.GETRequest(Memberships[i].Room.ImageURL));
+                RoomIcon.Click += UpdateChannels;
+                if (Memberships[i].Room.ImageURL != null)
+                {RoomIcon.Image = Image.FromStream(Backend.Networking.WebRequests.GETRequest(Memberships[i].Room.ImageURL));}
+                else
+                { RoomIcon.BackColor = Color.Gray; }
                 this.Table_Rooms.Controls.Add(RoomIcon, 0, i);
             }
         }
 
-        public void UpdateChannels()
+        public void UpdateChannels(object sender, EventArgs e)
         {
-            Backend.Data.Database.Emulation.Room CRoom = Memberships[CurrentRoom].Room;
+            CurrentRoom=int.Parse(((Control)sender).Name.Remove(0,8));
+            Table_Channels.Controls.Clear();
+            Tbl_Messages.Controls.Clear();
+            Backend.Data.Database.Emulation.Room CRoom = Backend.Api.Get.Room(CurrentRoom);
             for (int i = 0; i < CRoom.Channels.Count; i++)
             {
                 Label Text = new Label();
                 Text.Text = CRoom.Channels[i].Channelname;
-                Text.ForeColor = Color.Red;
-                Text.BackColor = Color.Green;
-                Text.Location = new Point(0, 0);
-                Text.Height = 20;
+                Text.ForeColor = Color.White;
+                //Text.Height = 20;
                 Text.Name = "Channel" + CRoom.Channels[i].ChannelId;
-                Text.BringToFront();
                 Text.Click += UpdateMessages;
                 this.Table_Channels.Controls.Add(Text, 0, i);
             }
@@ -62,16 +68,35 @@ namespace Client
 
         public void UpdateMessages(object sender, EventArgs e)
         {
+            CurrentChannel = int.Parse(((Control)sender).Name.Remove(0, 7));
             List<Backend.Data.Database.Emulation.Message> Messages = Backend.Api.Get.RecentMessages(CurrentChannel);
+            Messages.Reverse();
             Tbl_Messages.Controls.Clear();
+            int i = 0;
             foreach (Backend.Data.Database.Emulation.Message Message in Messages)
             {
                 PictureBox Picture = new PictureBox();
                 Picture.Name = "UserImage" + Message.MessageId + "-" + Message.User.UserID;
-                Picture.Height = 50;Picture.Width = 50;Picture.SizeMode = PictureBoxSizeMode.StretchImage;
-                Picture.Image = Image.FromStream(Backend.Networking.WebRequests.GETRequest(Message.User.ImageUrl));
+                Picture.Height = 30;Picture.Width = 30;Picture.SizeMode = PictureBoxSizeMode.StretchImage;
+                if (Message.User.ImageUrl != null)
+                { Picture.Image = Image.FromStream(Backend.Networking.WebRequests.GETRequest(Message.User.ImageUrl)); }
+                Tbl_Messages.Controls.Add(Picture, 0, i);
+
                 Label UserLabel = new Label();
+                UserLabel.Text = Message.User.UserName;
+                UserLabel.Name = "UserName" + Message.MessageId + "-" + Message.User.UserID;
+                UserLabel.ForeColor = Color.White;
+                //UserLabel.Height = 20;
+                Tbl_Messages.Controls.Add(UserLabel, 1, i);
+
                 Label BodyLabel = new Label();
+                BodyLabel.Text = Message.Body;
+                BodyLabel.Name = "Body" + Message.MessageId + "-" + Message.User.UserID;
+                BodyLabel.ForeColor = Color.Wheat;
+                //BodyLabel.Height = 20;
+                Tbl_Messages.Controls.Add(BodyLabel, 2, i);
+
+                i++;
             }
         }
 
