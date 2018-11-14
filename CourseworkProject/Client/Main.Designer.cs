@@ -231,6 +231,7 @@
             this.Btn_Send.TabIndex = 1;
             this.Btn_Send.Text = "Send";
             this.Btn_Send.UseVisualStyleBackColor = false;
+            this.Btn_Send.Click += new System.EventHandler(this.Btn_Send_Click);
             // 
             // Txt_Message
             // 

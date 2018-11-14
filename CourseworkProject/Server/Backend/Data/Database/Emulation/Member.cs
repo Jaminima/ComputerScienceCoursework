@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseworkProject.Backend.Data.Database.Emulation
+namespace Server.Backend.Data.Database.Emulation
 {
     public class NewMember : BaseObject
     {

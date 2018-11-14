@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Numerics;
 
-namespace CourseworkProject.Backend.Security
+namespace Server.Backend.Security
 {
     public static class Encryption
     {

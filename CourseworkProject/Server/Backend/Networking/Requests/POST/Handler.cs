@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 
-namespace CourseworkProject.Backend.Networking.Requests.POST
+namespace Server.Backend.Networking.Requests.POST
 {
     public static class Handler
     {
         public static ResponseObject GetResponse(HttpListenerContext Context)
         {
             Context = Security.Encryption.PerformDecryption(Context);
+            Security.LoginToken Token = Security.Login.IsValidToken(Context);
             ResponseObject Response = new ResponseObject();
             string[] URLPath = Context.Request.Url.Segments;
             string StreamString = new System.IO.StreamReader(Context.Request.InputStream).ReadToEnd();
@@ -20,7 +21,9 @@ namespace CourseworkProject.Backend.Networking.Requests.POST
             if (URLPath[1] == "api/")
             {
                 if (URLPath[2] == "login")
-                { return Api.Login.PerformLogin(Context, URLPath,StreamData); }
+                { return Api.Login.PerformLogin(Context, URLPath, StreamData); }
+                else if (URLPath[2] == "createentry/")
+                { return CreateEntry.Handler(Token, URLPath, StreamData); }
                 else { return ResponseObject.Defaults.PathNotFound(); }
             }
             return Response;

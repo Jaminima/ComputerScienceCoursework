@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseworkProject.Backend.Data.Database.Interaction
+namespace Server.Backend.Data.Database.Interaction
 {
     public static class Rooms
     {

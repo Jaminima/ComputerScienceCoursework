@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseworkProject.Backend.Data.Database.Interaction
+namespace Server.Backend.Data.Database.Interaction
 {
     public static class Message
     {
@@ -49,6 +49,7 @@ WHERE (((Messages.MessageID)=" + MID + @"));
                 return null;
             }
 
+
             public static Database.Emulation.Message[] RecentInChannel(Database.Emulation.Channel Channel,int MessageCount)
             {
                 List<String[]> MData = Init.SQLInstance.ExecuteReader(@"SELECT Messages.MessageID, Messages.ChannelID, Messages.UserID, Messages.Message, Messages.ImageURL, Messages.SentDateTime
@@ -71,6 +72,11 @@ ORDER BY Messages.SentDateTime DESC;
                 return Messages.ToArray<Database.Emulation.Message>();
             }
 
+        }
+
+        public static void InsertMessage(Database.Emulation.NewMessage NewMessage)
+        {
+            Init.SQLInstance.Execute(@"INSERT INTO Messages (ChannelID, UserID, Message, ImageURL, SentDateTime) VALUES (" + NewMessage.Channel.ChannelId + @"," + NewMessage.User.UserID + @",'" + NewMessage.Body + @"','" + NewMessage.ImageURL + @"','" + NewMessage.SendDateTime.ToString() + @"');");
         }
 
         public static bool MessageExists(int MID)

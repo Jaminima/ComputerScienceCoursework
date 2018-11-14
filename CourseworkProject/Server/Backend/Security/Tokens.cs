@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseworkProject.Backend.Security
+namespace Server.Backend.Security
 {
     public static class Tokens
     {

@@ -13,6 +13,9 @@ namespace Client
     public partial class Main : Form
     {
         int CurrentRoom = -1, CurrentChannel=-1;
+        Backend.Data.Database.Emulation.Room Room;
+        Backend.Data.Database.Emulation.Channel Channel;
+
         public Main()
         {
             InitializeComponent();
@@ -23,7 +26,9 @@ namespace Client
         {
             UpdateRooms();
             CurrentRoom = 0;
+            Room = Memberships[0].Room;
             CurrentChannel = Memberships[0].Room.Channels[0].ChannelId;
+            Channel = Room.Channels[0];
         }
 
         public void UpdateRooms()
@@ -69,6 +74,11 @@ namespace Client
         public void UpdateMessages(object sender, EventArgs e)
         {
             CurrentChannel = int.Parse(((Control)sender).Name.Remove(0, 7));
+            UpdateMessages();
+        }
+
+        public void UpdateMessages()
+        {
             List<Backend.Data.Database.Emulation.Message> Messages = Backend.Api.Get.RecentMessages(CurrentChannel);
             Messages.Reverse();
             Tbl_Messages.Controls.Clear();
@@ -77,7 +87,7 @@ namespace Client
             {
                 PictureBox Picture = new PictureBox();
                 Picture.Name = "UserImage" + Message.MessageId + "-" + Message.User.UserID;
-                Picture.Height = 30;Picture.Width = 30;Picture.SizeMode = PictureBoxSizeMode.StretchImage;
+                Picture.Height = 30; Picture.Width = 30; Picture.SizeMode = PictureBoxSizeMode.StretchImage;
                 if (Message.User.ImageUrl != null)
                 { Picture.Image = Image.FromStream(Backend.Networking.WebRequests.GETRequest(Message.User.ImageUrl)); }
                 Tbl_Messages.Controls.Add(Picture, 0, i);
@@ -98,6 +108,12 @@ namespace Client
 
                 i++;
             }
+        }
+
+        private void Btn_Send_Click(object sender, EventArgs e)
+        {
+            Backend.Networking.WebRequests.POSTRequest("api/createentry/message/"+CurrentChannel,null,Newtonsoft.Json.Linq.JToken.Parse(@"{'Body':'"+Txt_Message.Text+@"'}"));
+            UpdateMessages();
         }
 
         private void Txt_Message_TextChanged(object sender, EventArgs e)

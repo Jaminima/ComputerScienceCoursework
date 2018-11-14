@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 
-namespace CourseworkProject.Backend.Security
+namespace Server.Backend.Security
 {
     public static class Login
     {

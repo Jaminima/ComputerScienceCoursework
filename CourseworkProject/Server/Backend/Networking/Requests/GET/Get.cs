@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 
-namespace CourseworkProject.Backend.Networking.Requests.GET
+namespace Server.Backend.Networking.Requests.GET
 {
     public static class Get
     {

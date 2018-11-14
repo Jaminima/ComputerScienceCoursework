@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseworkProject.Backend.Networking
+namespace Server.Backend.Networking
 {
     public class ResponseObject
     {

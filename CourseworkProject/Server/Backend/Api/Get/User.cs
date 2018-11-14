@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseworkProject.Backend.Api.Get
+namespace Server.Backend.Api.Get
 {
     public static class User
     {

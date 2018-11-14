@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Net;
 
-namespace CourseworkProject.Backend.Networking
+namespace Server.Backend.Networking
 {
     public static class HTTPServer
     {

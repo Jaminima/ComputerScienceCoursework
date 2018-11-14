@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Backend\Api\CreateEntry\Message.cs" />
     <Compile Include="Backend\Api\Get\KeyExchange.cs" />
     <Compile Include="Backend\Api\Get\Member.cs" />
     <Compile Include="Backend\Api\Get\Message.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Backend\Networking\Requests\GET\Get.cs" />
     <Compile Include="Backend\Networking\Requests\GET\Handler.cs" />
     <Compile Include="Backend\Api\Get\Room.cs" />
+    <Compile Include="Backend\Networking\Requests\POST\CreateEntry.cs" />
     <Compile Include="Backend\Networking\Requests\POST\Handler.cs" />
     <Compile Include="Backend\Networking\ResponseObject.cs" />
     <Compile Include="Backend\Security\DiffieHelman.cs" />
@@ -88,5 +90,6 @@
     <Content Include="Codes.txt" />
     <Content Include="CurlCommands.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
