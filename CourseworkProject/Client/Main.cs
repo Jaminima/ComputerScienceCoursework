@@ -24,11 +24,20 @@ namespace Client
         static List<Backend.Data.Database.Emulation.Member> Memberships;
         private void Main_Load(object sender, EventArgs e)
         {
+            List<TableLayoutPanel> Tables = new List<TableLayoutPanel> { Tbl_Messages,Table_Channels,Table_Rooms };
             UpdateRooms();
             CurrentRoom = 0;
             Room = Memberships[0].Room;
             CurrentChannel = Memberships[0].Room.Channels[0].ChannelId;
             Channel = Room.Channels[0];
+            foreach (TableLayoutPanel Control in Tables)
+            {
+                TableLayoutPanel Panel = (TableLayoutPanel)Control;
+                Panel.HorizontalScroll.Maximum = 0;
+                Panel.AutoScroll = false;
+                Panel.VerticalScroll.Visible = false;
+                Panel.AutoScroll = true;
+            }
         }
 
         public void UpdateRooms()
@@ -37,7 +46,7 @@ namespace Client
             Tbl_Messages.Controls.Clear();
             Table_Rooms.Controls.Clear();
             Memberships = Backend.Api.Get.Memberships();
-            for (int i = 0; i < Memberships.Count && i < 12; i++)
+            for (int i = 0; i < Memberships.Count; i++)
             {
                 PictureBox RoomIcon = new PictureBox();
                 RoomIcon.Name = "RoomIcon" + Memberships[i].Room.RoomID;
@@ -103,6 +112,8 @@ namespace Client
                 BodyLabel.Text = Message.Body;
                 BodyLabel.Name = "Body" + Message.MessageId + "-" + Message.User.UserID;
                 BodyLabel.ForeColor = Color.Wheat;
+                BodyLabel.Width = 450;
+                BodyLabel.Height = 30;
                 //BodyLabel.Height = 20;
                 Tbl_Messages.Controls.Add(BodyLabel, 2, i);
 
@@ -113,12 +124,13 @@ namespace Client
         private void Btn_Send_Click(object sender, EventArgs e)
         {
             Backend.Networking.WebRequests.POSTRequest("api/createentry/message/"+CurrentChannel,null,Newtonsoft.Json.Linq.JToken.Parse(@"{'Body':'"+Txt_Message.Text+@"'}"));
+            Txt_Message.Text = "";
             UpdateMessages();
         }
 
         private void Txt_Message_TextChanged(object sender, EventArgs e)
         {
-            Lbl_WordCount.Text = Txt_Message.Text.Length.ToString();
+            Lbl_WordCount.Text = Txt_Message.Text.Length.ToString()+"/100";
         }
     }
 }

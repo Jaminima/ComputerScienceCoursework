@@ -16,7 +16,7 @@ namespace Server.Backend.Data.Database.Interaction
                 {
                     Database.Emulation.Member Member = new Database.Emulation.Member(MID);
                     List<String[]> MData = Init.SQLInstance.ExecuteReader(@"SELECT Memberships.MembershipID, Memberships.UserID, Memberships.RoomID, Memberships.IsModerator
-FROM (UserData INNER JOIN Rooms ON UserData.UserID = Rooms.OwnerID) INNER JOIN Memberships ON (UserData.UserID = Memberships.UserID) AND (Rooms.RoomID = Memberships.RoomID)
+FROMMemberships
 WHERE (((Memberships.MembershipID)="+MID+@"));
 ");
                     if (MData.Count == 0) { return null; }
@@ -34,7 +34,7 @@ WHERE (((Memberships.MembershipID)="+MID+@"));
                 {
                     Database.Emulation.Member Member = new Database.Emulation.Member(MID);
                     List<String[]> MData = Init.SQLInstance.ExecuteReader(@"SELECT Memberships.MembershipID, Memberships.UserID, Memberships.RoomID, Memberships.IsModerator
-FROM (UserData INNER JOIN Rooms ON UserData.UserID = Rooms.OwnerID) INNER JOIN Memberships ON (UserData.UserID = Memberships.UserID) AND (Rooms.RoomID = Memberships.RoomID)
+FROM Memberships
 WHERE (((Memberships.MembershipID)=" + MID + @"));
 ");
                     if (MData.Count == 0) { return null; }
@@ -48,8 +48,8 @@ WHERE (((Memberships.MembershipID)=" + MID + @"));
             public static List<Database.Emulation.Member> UserMemberships(int UID)
             {
                 List<String[]> MData= Init.SQLInstance.ExecuteReader(@"SELECT Memberships.MembershipID, Memberships.UserID, Memberships.RoomID, Memberships.IsModerator
-FROM (UserData INNER JOIN Rooms ON UserData.UserID = Rooms.OwnerID) INNER JOIN Memberships ON (UserData.UserID = Memberships.UserID) AND (Rooms.RoomID = Memberships.RoomID)
-WHERE (((Memberships.UserID)=" + UID + @"));
+FROM Memberships
+WHERE (((Memberships.UserID)="+UID+@"));
 ");
                 List<Database.Emulation.Member> Memberships = new List<Emulation.Member> { };
                 if (MData.Count == 0) { return null; }
