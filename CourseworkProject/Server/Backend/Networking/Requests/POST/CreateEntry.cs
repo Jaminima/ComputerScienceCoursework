@@ -13,6 +13,8 @@ namespace Server.Backend.Networking.Requests.POST
         {
             if (URLPath[3] == "message/")
             { return Api.CreateEntry.Message.SaveMessage(Token,URLPath,StreamData); }
+            if (URLPath[3] == "newuser/")
+            { return Api.CreateEntry.User.CreateUser(Token, URLPath, StreamData); }
             else { return ResponseObject.Defaults.PathNotFound(); }
         }
     }

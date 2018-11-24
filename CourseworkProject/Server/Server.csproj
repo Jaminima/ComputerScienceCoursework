@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Backend\Api\CreateEntry\Message.cs" />
+    <Compile Include="Backend\Api\CreateEntry\User.cs" />
     <Compile Include="Backend\Api\Get\KeyExchange.cs" />
     <Compile Include="Backend\Api\Get\Member.cs" />
     <Compile Include="Backend\Api\Get\Message.cs" />

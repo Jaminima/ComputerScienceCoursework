@@ -22,7 +22,7 @@ namespace Server.Backend.Api.CreateEntry
 
             Data.Database.Interaction.Message.InsertMessage(NewMessage);
 
-            Response.Code = 200; Response.Message = "Inserted message";
+            Response.Code = 200; Response.Message = "Inserted Message";
             return Response;
         }
     }

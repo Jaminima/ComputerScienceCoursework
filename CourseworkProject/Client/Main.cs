@@ -26,10 +26,12 @@ namespace Client
         {
             List<TableLayoutPanel> Tables = new List<TableLayoutPanel> { Tbl_Messages,Table_Channels,Table_Rooms };
             UpdateRooms();
-            CurrentRoom = 0;
+            CurrentRoom = Memberships[0].Room.RoomID;
             Room = Memberships[0].Room;
             CurrentChannel = Memberships[0].Room.Channels[0].ChannelId;
             Channel = Room.Channels[0];
+            UpdateChannels();
+            UpdateMessages();
             foreach (TableLayoutPanel Control in Tables)
             {
                 TableLayoutPanel Panel = (TableLayoutPanel)Control;
@@ -65,6 +67,11 @@ namespace Client
         public void UpdateChannels(object sender, EventArgs e)
         {
             CurrentRoom=int.Parse(((Control)sender).Name.Remove(0,8));
+            UpdateChannels();
+        }
+
+        public void UpdateChannels()
+        {
             Table_Channels.Controls.Clear();
             Tbl_Messages.Controls.Clear();
             Backend.Data.Database.Emulation.Room CRoom = Backend.Api.Get.Room(CurrentRoom);
@@ -125,6 +132,11 @@ namespace Client
         {
             Backend.Networking.WebRequests.POSTRequest("api/createentry/message/"+CurrentChannel,null,Newtonsoft.Json.Linq.JToken.Parse(@"{'Body':'"+Txt_Message.Text+@"'}"));
             Txt_Message.Text = "";
+            UpdateMessages();
+        }
+
+        private void Tmr_RefreshMessages_Tick(object sender, EventArgs e)
+        {
             UpdateMessages();
         }
 

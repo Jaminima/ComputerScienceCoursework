@@ -108,7 +108,7 @@ WHERE (((Memberships.MembershipID)="+Member.MemberID+@"));
         public static int[] GetAllMemberIdsInRoom(int RID)
         {
             List<string[]> StrIds = Init.SQLInstance.ExecuteReader(@"SELECT Memberships.MembershipID, Memberships.UserID, Memberships.RoomID, Memberships.IsModerator
-FROM (UserData INNER JOIN Rooms ON UserData.UserID = Rooms.OwnerID) INNER JOIN Memberships ON (UserData.UserID = Memberships.UserID) AND (Rooms.RoomID = Memberships.RoomID)
+FROM Memberships
 WHERE (((Memberships.RoomID)="+RID+@"));
 ");
             if (StrIds.Count != 0)
@@ -126,7 +126,7 @@ WHERE (((Memberships.RoomID)="+RID+@"));
         public static int[] GetAllMemberIds()
         {
             List<string[]> StrIds = Init.SQLInstance.ExecuteReader(@"SELECT Memberships.MembershipID, Memberships.UserID, Memberships.RoomID, Memberships.IsModerator
-FROM (UserData INNER JOIN Rooms ON UserData.UserID = Rooms.OwnerID) INNER JOIN Memberships ON (UserData.UserID = Memberships.UserID) AND (Rooms.RoomID = Memberships.RoomID);
+FROM Memberships;
 ");
             if (StrIds.Count != 0)
             {

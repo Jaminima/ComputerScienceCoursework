@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Client
 {
-    public partial class Login : Form
+    public partial class SignUp : Form
     {
-        public Login()
+        public SignUp()
         {
             InitializeComponent();
         }
@@ -27,16 +27,20 @@ namespace Client
             this.Close();
         }
 
-        private void Btn_Login_Click(object sender, EventArgs e)
+        private void Btn_AutoSignUp_Click(object sender, EventArgs e)
         {
-            bool LoggedIn = Backend.Api.Login.PerformLogin(Txt_UserName.Text, Txt_Password.Text);
-            if (!LoggedIn) { MessageBox.Show("User Name or Password is invalid"); }
-            else { new Main().Show(); this.Hide(); }
+
         }
 
         private void Btn_SignUp_Click(object sender, EventArgs e)
         {
-            new SignUp().Show();
+
         }
+
+        bool PerformSignUp(string UserName,string Password)
+        {
+            return false;
+        }
+
     }
 }
