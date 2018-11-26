@@ -1,0 +1,6 @@
+[submodule "Code/OwlCoinV2"]
+	path = Code/OwlCoinV2
+	url = https://github.com/Jaminima/OwlCoinV2
+[submodule "Code/TwitchRewardCurrencyAPI"]
+	path = Code/TwitchRewardCurrencyAPI
+	url = https://github.com/Jaminima/TwitchRewardCurrencyAPI
