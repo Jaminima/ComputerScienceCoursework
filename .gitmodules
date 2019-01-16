@@ -7,3 +7,6 @@
 [submodule "Code/Twitch-Discord-Reward-Bot"]
 	path = Code/Twitch-Discord-Reward-Bot
 	url = https://github.com/Jaminima/Twitch-Discord-Reward-Bot
+[submodule "Code/Twitch-Discord-Reward-Site"]
+	path = Code/Twitch-Discord-Reward-Site
+	url = https://github.com/Jaminima/Twitch-Discord-Reward-Site
